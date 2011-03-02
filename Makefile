@@ -1,9 +1,24 @@
+# GNU Make dependent
 
-code: clean
-	erl -noshell -pa ebin -s make all -s erlang halt
+.PHONY: compile clean doc
+#.PHONY: c_doc eunit speed
 
-run:	code
-	werl -pa ebin &
-	
+REBAR=$(shell sh -c "PATH='$(PATH)':support which rebar||support/getrebar||echo false")
+
+compile:
+	$(REBAR) compile
+
 clean:
-	rm -fv ebin/*.beam erl_crash.dump
+	$(REBAR) clean
+
+#c_doc:
+#	doxygen
+
+doc: 
+	$(REBAR) doc
+
+#eunit:
+#	$(REBAR) eunit
+
+#speed:
+#	erl -pa ./ebin -noshell -s sfmt_tests test_speed -s init stop
