@@ -5,7 +5,7 @@
 
 -module(mktab).
 
--export([start/0]).
+-export([start/0, bin/1, nib/1, hex8/1]).
 
 %% convert a hex byte into two ascii letters
 hex8(X) ->

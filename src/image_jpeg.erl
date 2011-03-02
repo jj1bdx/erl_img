@@ -4,8 +4,13 @@
 %%% Created :  5 Mar 2003 by Tony Rogvall <tony@bix.hemma.se>
 
 -module(image_jpeg).
+-export([collect_olymp/3,
+	 collect_nikon/3,
+	 collect_sony/3,
+	 collect_other/3,
+	 collect_maker_fixme/3]).
 
--include_lib("erl_img/include/erl_img.hrl").
+-include_lib("erl_img.hrl").
 
 -include("jpeg.hrl").
 -include("tiff.hrl").
@@ -155,7 +160,7 @@ collect_other(_Fd, T, St) ->
 	[T#tiff_entry.ifd,_Key,T#tiff_entry.type, T#tiff_entry.value]),
     St.
 
-collect_maker(_Fd, T, St) ->
+collect_maker(_Fd, _T, St) ->
     {ok, St}.
 
 collect_maker_fixme(Fd, T, St) ->
